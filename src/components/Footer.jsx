@@ -31,7 +31,14 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <p className="site-footer__legal">© {year} Ojo de Tigre. Todos los derechos reservados.</p>
+      <p className="site-footer__legal">
+        © {year} Ojo de Tigre. Todos los derechos reservados.
+        <br />
+        Página desarrollada por{' '}
+        <a href="https://codebywill.vercel.app/" target="_blank" rel="noreferrer" className="site-footer__credit">
+          codebywill
+        </a>
+      </p>
     </footer>
   )
 }

@@ -6,7 +6,6 @@ import About from '../components/About'
 import Faq from '../components/Faq'
 import Categories from '../components/Categories'
 import Catalog from '../components/Catalog'
-import Newsletter from '../components/Newsletter'
 import Contact from '../components/Contact'
 
 export default function Home({ activeCategory, onCategoryChange, onSelectCategory }) {
@@ -26,7 +25,6 @@ export default function Home({ activeCategory, onCategoryChange, onSelectCategor
       <Faq />
       <Categories onSelectCategory={onSelectCategory} />
       <Catalog activeCategory={activeCategory} onCategoryChange={onCategoryChange} />
-      <Newsletter />
       <Contact />
     </>
   )

@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom'
 import { InstagramIcon, WhatsAppIcon } from './icons'
-import { WHATSAPP_NUMBER } from '../config'
+import { INSTAGRAM_URL, WHATSAPP_NUMBER } from '../config'
 
 const logo = '/OJODETIGRE.png'
 
@@ -9,22 +10,23 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
-        <a href="#top" className="brand">
+        <Link to="/#top" className="brand">
           <img src={logo} alt="Ojo de Tigre" />
           <span>Ojo de Tigre</span>
-        </a>
+        </Link>
 
         <nav className="site-footer__nav">
-          <a href="#catalogo">Catálogo</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#contacto">Contacto</a>
+          <Link to="/#nosotros">Nosotros</Link>
+          <Link to="/#catalogo">Catálogo</Link>
+          <Link to="/#faq">FAQ</Link>
+          <Link to="/#contacto">Contacto</Link>
         </nav>
 
         <div className="site-footer__social">
           <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" aria-label="WhatsApp">
             <WhatsAppIcon width={18} height={18} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">
             <InstagramIcon width={18} height={18} />
           </a>
         </div>

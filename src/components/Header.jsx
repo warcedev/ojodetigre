@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { BagIcon, CloseIcon, MenuIcon } from './icons'
 import { useBump } from '../hooks/useBump'
 
 const logo = '/OJODETIGRE.png'
 
 const LINKS = [
-  { href: '#catalogo', label: 'Catálogo' },
-  { href: '#nosotros', label: 'Nosotros' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#categorias', label: 'Categorías' },
+  { href: '/#catalogo', label: 'Catálogo' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/#contacto', label: 'Contacto' },
 ]
 
 export default function Header({ cartCount, onOpenCart }) {
@@ -25,16 +28,16 @@ export default function Header({ cartCount, onOpenCart }) {
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="site-header__bar container">
-        <a href="#top" className="brand">
+        <Link to="/#top" className="brand">
           <img src={logo} alt="Ojo de Tigre" />
           <span>Ojo de Tigre</span>
-        </a>
+        </Link>
 
         <nav className="site-nav site-nav--desktop">
           {LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <Link key={link.href} to={link.href}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -59,9 +62,9 @@ export default function Header({ cartCount, onOpenCart }) {
       {menuOpen && (
         <nav className="site-nav site-nav--mobile">
           {LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+            <Link key={link.href} to={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       )}

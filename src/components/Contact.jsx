@@ -1,5 +1,5 @@
-import { WHATSAPP_NUMBER } from '../config'
-import { InstagramIcon, PinIcon, WhatsAppIcon } from './icons'
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, PHONE_DISPLAY, WHATSAPP_CONTACT_NAME, WHATSAPP_NUMBER } from '../config'
+import { InstagramIcon, WhatsAppIcon } from './icons'
 import { useOnScreen } from '../hooks/useOnScreen'
 
 function ContactCard({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
@@ -19,7 +19,7 @@ function ContactCard({ as: Tag = 'div', delay = 0, className = '', children, ...
 export default function Contact() {
   const [headingRef, headingVisible] = useOnScreen()
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    'Hola! Quiero consultar por sus perfumes.',
+    'Hola! Quiero consultar por sus decants.',
   )}`
 
   return (
@@ -27,29 +27,21 @@ export default function Contact() {
       <div className="container">
         <div ref={headingRef} className={`section-heading reveal ${headingVisible ? 'is-visible' : ''}`}>
           <p className="eyebrow">Contacto</p>
-          <h2>Hablemos de tu próxima fragancia</h2>
+          <h2>Estamos aquí para ayudarte siempre</h2>
           <div className="divider" />
-          <p className="section-heading__subtitle">
-            Escribinos por WhatsApp para consultas, asesoramiento personalizado o seguimiento de
-            tu pedido.
-          </p>
         </div>
 
-        <div className="contact-grid">
+        <div className="contact-grid contact-grid--two">
           <ContactCard as="a" href={whatsappHref} target="_blank" rel="noreferrer" delay={0}>
             <WhatsAppIcon width={26} height={26} />
             <h3>WhatsApp</h3>
-            <p>Respuesta rápida para pedidos y consultas</p>
+            <p>{WHATSAPP_CONTACT_NAME}</p>
+            <p className="contact-card__meta">{PHONE_DISPLAY}</p>
           </ContactCard>
-          <ContactCard as="a" href="https://instagram.com" target="_blank" rel="noreferrer" delay={120}>
+          <ContactCard as="a" href={INSTAGRAM_URL} target="_blank" rel="noreferrer" delay={120}>
             <InstagramIcon width={26} height={26} />
             <h3>Instagram</h3>
-            <p>@ojodetigre.perfumes</p>
-          </ContactCard>
-          <ContactCard className="contact-card--static" delay={240}>
-            <PinIcon width={26} height={26} />
-            <h3>Envíos</h3>
-            <p>A todo el país por correo o cadetería</p>
+            <p>{INSTAGRAM_HANDLE}</p>
           </ContactCard>
         </div>
 

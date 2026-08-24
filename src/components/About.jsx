@@ -1,21 +1,21 @@
 import { useOnScreen } from '../hooks/useOnScreen'
 
-const VALUES = [
+const FEATURES = [
   {
-    title: '100% Originales',
-    text: 'Trabajamos únicamente con perfumes originales de las marcas más reconocidas del mundo.',
+    title: 'Calidad Asegurada',
+    text: 'Fragancias 100% originales, cuidadosamente preservadas para garantizar pureza y autenticidad.',
   },
   {
-    title: 'Decants desde 10ml',
-    text: 'Probá una fragancia antes de invertir en el frasco completo, con la misma calidad del original.',
+    title: 'Envíos Veloces',
+    text: 'Procesamos y enviamos tu pedido con rapidez y elegancia, directo a tus manos.',
   },
   {
-    title: 'Envíos a todo el país',
-    text: 'Despachamos tu pedido con cuidado y rapidez a cualquier punto del país.',
+    title: 'Asesoría Personalizada',
+    text: 'Te ayudamos a encontrar la fragancia que refleje tu esencia única.',
   },
 ]
 
-function ValueCard({ title, text, delay }) {
+function FeatureCard({ title, text, delay }) {
   const [ref, visible] = useOnScreen()
   return (
     <div
@@ -31,29 +31,29 @@ function ValueCard({ title, text, delay }) {
 
 export default function About() {
   const [copyRef, copyVisible] = useOnScreen()
+  const [featuresHeadingRef, featuresHeadingVisible] = useOnScreen()
 
   return (
     <section id="nosotros" className="about">
       <div className="container about__grid">
         <div ref={copyRef} className={`about__copy reveal ${copyVisible ? 'is-visible' : ''}`}>
-          <p className="eyebrow">Nosotros</p>
-          <h2>Una selección curada, para quienes eligen distinguirse</h2>
+          <p className="eyebrow">Acerca de Ojo de Tigre</p>
+          <h2>Somos expertos en decants, ofreciendo lujo y frescura en cada fragancia</h2>
           <div className="divider" style={{ marginLeft: 0 }} />
           <p>
-            Ojo de Tigre es una distribuidora de perfumes dedicada a acercar las fragancias más
-            deseadas del mundo a un precio justo. Seleccionamos marcas icónicas y las ofrecemos
-            tanto en su presentación original como en versiones fraccionadas, para que cada
-            cliente encuentre su aroma ideal sin resignar calidad.
-          </p>
-          <p>
-            Cada pedido se prepara a mano, cuidando el detalle desde la selección del frasco hasta
-            el empaque final.
+            Un decant es una porción pequeña de perfume original, pensada para que puedas
+            descubrir tu próxima fragancia favorita sin resignar calidad ni comprar el frasco
+            completo. Seleccionamos marcas icónicas y las preparamos a mano, cuidando cada
+            detalle del proceso.
           </p>
         </div>
-        <div className="about__values">
-          {VALUES.map((value, index) => (
-            <ValueCard key={value.title} {...value} delay={index * 120} />
-          ))}
+        <div ref={featuresHeadingRef} className={`about__values-wrap reveal ${featuresHeadingVisible ? 'is-visible' : ''}`}>
+          <p className="eyebrow">Lo mejor a tu disposición</p>
+          <div className="about__values">
+            {FEATURES.map((feature, index) => (
+              <FeatureCard key={feature.title} {...feature} delay={index * 120} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

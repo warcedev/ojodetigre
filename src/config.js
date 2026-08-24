@@ -1,2 +1,5 @@
-// TODO: reemplazar por el número real de WhatsApp del negocio (código país + área, sin 0 ni 15).
-export const WHATSAPP_NUMBER = '5491100000000'
+export const WHATSAPP_NUMBER = '595993360030'
+export const WHATSAPP_CONTACT_NAME = 'Matías Chamorro'
+export const PHONE_DISPLAY = '+595 993 360030'
+export const INSTAGRAM_URL = 'https://www.instagram.com/matias_chamorrooo/'
+export const INSTAGRAM_HANDLE = '@matias_chamorrooo'

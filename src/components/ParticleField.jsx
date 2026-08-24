@@ -26,7 +26,7 @@ export default function ParticleField({ count = 46 }) {
         r: (Math.random() * 1.4 + 0.5) * dpr,
         speed: (Math.random() * 0.22 + 0.05) * dpr,
         drift: (Math.random() - 0.5) * 0.14 * dpr,
-        alpha: Math.random() * 0.5 + 0.15,
+        alpha: Math.random() * 0.4 + 0.25,
         twinkle: Math.random() * 0.014 + 0.004,
         phase: Math.random() * Math.PI * 2,
       }))
@@ -45,7 +45,7 @@ export default function ParticleField({ count = 46 }) {
         const a = p.alpha * (0.5 + 0.5 * Math.sin(p.phase))
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(234, 177, 70, ${a})`
+        ctx.fillStyle = `rgba(122, 93, 40, ${a})`
         ctx.fill()
       }
       raf = requestAnimationFrame(tick)

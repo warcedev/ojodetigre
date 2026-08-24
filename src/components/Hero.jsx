@@ -26,15 +26,15 @@ export default function Hero() {
       <div className="hero__glow" ref={glowRef} aria-hidden="true" />
       <ParticleField />
       <div className="container hero__content">
-        <img src={logo} alt="" className="hero__logo" />
-        <p className="eyebrow">Distribuidora de perfumes originales</p>
+        <img src={logo} alt="Ojo de Tigre" className="hero__logo" />
+        <p className="eyebrow">Distribuidora de decants originales</p>
         <h1 className="hero__title">
           Fragancias de las mejores marcas,
           <br />a tu medida
         </h1>
         <p className="hero__subtitle">
-          Perfumes de alta gama en frasco completo o en versiones decant desde 10ml.
-          Autenticidad garantizada, envíos a todo el país.
+          Decants originales desde 5mL, preparados a mano para que descubras tu próxima
+          fragancia favorita. Autenticidad garantizada, envíos a todo el país.
         </p>
         <div className="hero__actions">
           <a href="#catalogo" className="btn btn--gold">

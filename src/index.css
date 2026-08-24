@@ -1,23 +1,21 @@
 :root {
-  --black: #000000;
-  --black-warm: #3f1e07;
-  --bronze-dark: #69481a;
-  --gold-dark: #906b12;
-  --gold: #c78527;
-  --gold-light: #eab146;
-  --champagne: #f8d881;
-  --ivory: #fdf6d4;
+  --black: #0a0a0a;
+  --gold: #c5a24a;
+  --gold-light: #dccb9a;
+  --champagne: #dccb9a;
+  --gold-deep: #7a5d28;
+  --ivory: #171717;
 
-  --bg: #0b0a08;
-  --bg-elevated: #14110c;
+  --bg: #f8f7f3;
+  --bg-elevated: #ffffff;
   --ink: var(--ivory);
-  --ink-muted: #cfc4a3;
-  --line: rgba(199, 133, 39, 0.25);
+  --ink-muted: #6b6b6b;
+  --line: #e5e1d8;
 
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --sans: 'Montserrat', system-ui, sans-serif;
 
-  color-scheme: dark;
+  color-scheme: light;
   color: var(--ink);
   background: var(--bg);
   font-synthesis: none;
@@ -76,7 +74,7 @@ img {
   font-size: 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--gold-deep);
   font-weight: 600;
 }
 

@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import About from './components/About'
-import Catalog from './components/Catalog'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Cart from './components/Cart'
+import WhatsAppButton from './components/WhatsAppButton'
+import Home from './pages/Home'
+import ProductDetail from './pages/ProductDetail'
 import { BagIcon } from './components/icons'
 import { cartKey } from './utils'
 import './App.css'
@@ -13,13 +13,14 @@ import './App.css'
 function App() {
   const [cart, setCart] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState('Todos')
 
-  function handleAdd(product, size) {
+  function handleAdd(product, size, qty = 1) {
     const key = cartKey(product.id, size.label)
     setCart((prev) => {
       const existing = prev.find((item) => item.key === key)
       if (existing) {
-        return prev.map((item) => (item.key === key ? { ...item, qty: item.qty + 1 } : item))
+        return prev.map((item) => (item.key === key ? { ...item, qty: item.qty + qty } : item))
       }
       return [
         ...prev,
@@ -30,7 +31,7 @@ function App() {
           name: product.name,
           size: size.label,
           price: size.price,
-          qty: 1,
+          qty,
         },
       ]
     })
@@ -49,18 +50,34 @@ function App() {
     setCart((prev) => prev.filter((item) => item.key !== key))
   }
 
+  function handleSelectCategory(category) {
+    setActiveCategory(category)
+    document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0)
 
   return (
     <>
       <Header cartCount={cartCount} onOpenCart={() => setCartOpen(true)} />
       <main>
-        <Hero />
-        <About />
-        <Catalog onAdd={handleAdd} />
-        <Contact />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                activeCategory={activeCategory}
+                onCategoryChange={setActiveCategory}
+                onSelectCategory={handleSelectCategory}
+              />
+            }
+          />
+          <Route path="/producto/:id" element={<ProductDetail onAdd={handleAdd} />} />
+        </Routes>
       </main>
       <Footer />
+
+      <WhatsAppButton />
 
       {cartCount > 0 && !cartOpen && (
         <button type="button" className="floating-cart" onClick={() => setCartOpen(true)}>

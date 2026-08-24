@@ -3,14 +3,32 @@ import { CATEGORIES, PRODUCTS } from '../data/products'
 import ProductCard from './ProductCard'
 import { useOnScreen } from '../hooks/useOnScreen'
 
-export default function Catalog({ onAdd }) {
-  const [activeCategory, setActiveCategory] = useState('Todos')
+const SORT_OPTIONS = [
+  { value: 'default', label: 'Por defecto' },
+  { value: 'price-asc', label: 'Precio: menor a mayor' },
+  { value: 'price-desc', label: 'Precio: mayor a menor' },
+  { value: 'name-asc', label: 'Nombre: A-Z' },
+]
+
+export default function Catalog({ activeCategory, onCategoryChange }) {
+  const [sort, setSort] = useState('default')
   const [headingRef, headingVisible] = useOnScreen()
 
   const filtered = useMemo(() => {
-    if (activeCategory === 'Todos') return PRODUCTS
-    return PRODUCTS.filter((p) => p.category === activeCategory)
-  }, [activeCategory])
+    const list =
+      activeCategory === 'Todos' ? [...PRODUCTS] : PRODUCTS.filter((p) => p.category === activeCategory)
+
+    switch (sort) {
+      case 'price-asc':
+        return list.sort((a, b) => a.sizes[0].price - b.sizes[0].price)
+      case 'price-desc':
+        return list.sort((a, b) => b.sizes[0].price - a.sizes[0].price)
+      case 'name-asc':
+        return list.sort((a, b) => a.name.localeCompare(b.name))
+      default:
+        return list
+    }
+  }, [activeCategory, sort])
 
   return (
     <section id="catalogo" className="catalog">
@@ -20,32 +38,39 @@ export default function Catalog({ onAdd }) {
           <h2>Nuestras fragancias</h2>
           <div className="divider" />
           <p className="section-heading__subtitle">
-            Elegí la presentación que prefieras y agregala al carrito. Coordinamos el pedido
-            completo por WhatsApp.
+            Filtra por género, tamaño o colección para encontrar tu aroma ideal.
           </p>
         </div>
 
-        <div className="category-filters">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              className={`category-pill ${cat === activeCategory ? 'is-active' : ''}`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="catalog-toolbar">
+          <div className="category-filters">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`category-pill ${cat === activeCategory ? 'is-active' : ''}`}
+                onClick={() => onCategoryChange(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <label className="sort-select">
+            <span>Ordenar por</span>
+            <select value={sort} onChange={(e) => setSort(e.target.value)}>
+              {SORT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className="product-grid">
           {filtered.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAdd={onAdd}
-              delay={(index % 3) * 90}
-            />
+            <ProductCard key={product.id} product={product} delay={(index % 3) * 90} />
           ))}
         </div>
       </div>
